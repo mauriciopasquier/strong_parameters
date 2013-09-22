@@ -325,5 +325,6 @@ class NestedParametersTest < ActiveSupport::TestCase
     params = ActionController::Parameters.new(:id => :something)
 
     refute params.permit([ :id ]).empty?, "array of keys has not been recognized"
+    assert_equal :something, params.permit([ :id ])[:id]
   end
 end
