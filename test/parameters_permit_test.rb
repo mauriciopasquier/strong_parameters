@@ -318,4 +318,12 @@ class NestedParametersTest < ActiveSupport::TestCase
     assert_equal 'William Shakespeare', permitted[:book][:authors_attributes]['0'][0]
     assert_equal 'Unattributed Assistant', permitted[:book][:authors_attributes]['1'][0]
   end
+
+  # --- permit array of keys ---------------------------------------------------
+
+  test "permitting parameters as an array" do
+    params = ActionController::Parameters.new(:id => :something)
+
+    refute params.permit([ :id ]).empty?, "array of keys has not been recognized"
+  end
 end
